@@ -1,1 +1,1 @@
-# MEAN_Practice
+# MEAN Practice
