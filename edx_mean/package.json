@@ -1,0 +1,20 @@
+{
+    "name": "meanstack_edx",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha index.js",
+        "test-kitten": "mocha -R nyan index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "underscore": "latest",
+        "mongoose": "latest",
+        "mongodb": "latest",
+        "mocha": "latest",
+        "gulp": "latest",
+        "gulp-mocha": "latest"
+    }
+}
