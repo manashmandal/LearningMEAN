@@ -1,23 +1,25 @@
 var express = require('express');
 var app = express();
+var stack = require('./routes/stack');
 // var eon = require('eon');
 // var PubNub = require('pubnub');
 
 var data = [];
 var temp_data = {};
-
+app.set('view engine', 'jade');
 
 // var pubnub = new PubNub({
 //   publish_key: 'pub-c-3cfe96eb-4ce9-4cc8-b36e-b6a55f8fcc70',
 //   subscribe_key: 'sub-c-7a89efca-bb89-11e6-9dca-02ee2ddab7fe',
 //   ssl : true,
 // });
-
-app.get('/', function(req, res){
-  // res.send('Hello world');
-  console.log(__dirname + '\\index.html');
-  res.sendFile(__dirname + '\\index.html');
-});
+app.get('/', stack.home);
+// app.get('/', function(req, res){
+//   // res.send('Hello world');
+//   // console.log(__dirname + '\\index.html');
+//   // res.sendFile(__dirname + '\\index.html');
+//
+// });
 
 app.get('/tempsensor/:reading', function(req, res){
   console.log('reading from the temperature sensor: ' + req.params.reading);

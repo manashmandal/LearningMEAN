@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies" : {
     "express" : "latest",
-    "pubnub" : "latest",
-    "eon"  : "latest"
+    "jade" : "latest"
   }
 }
