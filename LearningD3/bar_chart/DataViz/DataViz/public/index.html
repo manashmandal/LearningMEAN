@@ -24,9 +24,11 @@
             console.log("GETTING THE DATA");
 
             d.forEach(function (element) {
-                ratData = ratData.concat(element.rats);
+                //ratData = ratData.concat(element.rats);
+                //ratCities = ratCities.concat(element.city);
             });
 
+            ratData = d;
             console.log(ratData);
             createVisualization();
         });
@@ -39,7 +41,10 @@
 
             // Get length of Array and set length so we can an input dataset of variable length
             var arrayLength = ratData.length; // length of dataset
-            var maxValue = d3.max(ratData, function (d) { return +d; }); // get maximum value of our dataset
+            var maxValue = d3.max(ratData, function (d) { return +d.rats; }); // get maximum value of our dataset
+
+            console.log("MAX VALUE "  + maxValue);
+
             var x_axisLength = 100; // length of x-axis in our layout
             var y_axisLength = 100; // length of y-axis in our layout
 
@@ -54,6 +59,14 @@
                 .attr("width", w)
                 .attr("height", h);
 
+            var tooltip = d3.select("body")
+            .append("div")
+            .style("position", "absolute")
+            .style("font-family", "'Open Sans', sans-serif")
+            .style("font-size", "12px")
+            .style("z-index", "10")
+            .style("visibility", "hidden");
+
             // Select and generate rectangle elements
             svg.selectAll("rect")
                 .data(ratData)
@@ -63,13 +76,16 @@
                     return i * (x_axisLength / arrayLength) + 30; // Set x coordinate of rectangle to index of data value (i) *25
                 })
                 .attr("y", function (d) {
-                    return h - yScale(d) - 75; // Set y coordinate of rect using the y scale
+                    return h - yScale(d.rats) - 75; // Set y coordinate of rect using the y scale
                 })
                 .attr("width", (x_axisLength / arrayLength) - 1)
                 .attr("height", function (d) {
-                    return yScale(d); // Set height of using the scale
+                    return yScale(d.rats); // Set height of using the scale
                 })
-                .attr("fill", "steelblue");
+                .attr("fill", "steelblue")
+            .on("mouseover", function (d) {
+                return tooltip.style("visibility", "visible").text()
+            })
 
             // Create y-axis
             svg.append("line")
@@ -95,6 +111,9 @@
                 .attr("text-anchor", "end")
                 .text("No. of Rats")
                 .attr("transform", "translate(20, 20) rotate(-90)");
+
+
+            
         };
 
 
