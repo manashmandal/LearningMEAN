@@ -1,0 +1,13 @@
+{
+  "name": "data-viz",
+  "version": "0.0.0",
+  "description": "DataViz",
+  "main": "app.js",
+  "author": {
+    "name": "Manash"
+  },
+  "dependencies": {
+    "express": "~4.14.0",
+    "nodemon": "^1.11.0"
+  }
+}
