@@ -21,15 +21,7 @@
 
         
         d3.json('/public/data', function (d) {
-            console.log("GETTING THE DATA");
-
-            d.forEach(function (element) {
-                //ratData = ratData.concat(element.rats);
-                //ratCities = ratCities.concat(element.city);
-            });
-
             ratData = d;
-            console.log(ratData);
             createVisualization();
         });
 
