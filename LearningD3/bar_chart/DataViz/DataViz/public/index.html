@@ -76,8 +76,14 @@
                 })
                 .attr("fill", "steelblue")
             .on("mouseover", function (d) {
-                return tooltip.style("visibility", "visible").text()
+                return tooltip.style("visibility", "visible").text(d.city + ": " + d.rats);
             })
+            .on("mousemove", function (d) {
+                return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px").text(d.city + ": " + d.rats);
+            })
+            .on("mouseout", function (d) {
+                return tooltip.style("visibility", "hidden");
+            });
 
             // Create y-axis
             svg.append("line")
