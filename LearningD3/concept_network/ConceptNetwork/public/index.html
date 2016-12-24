@@ -301,7 +301,21 @@
           .enter().append("g")
             .attr("class", "outer_node")
             .attr("transform", function (d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
-            .on("mouseover", mouseover)
+            //.on("mouseover", mouseover)
+
+            .on("mouseover", function (d, i) {
+                console.log("MOUSE ON THE CIRCLE: " + i);
+                d3.select("#" + d.id).transition()
+                .ease("elastic")
+            .duration("500")
+            .attr("r", 7);
+
+                d3.select("#" + d.id + "-txt")
+                    .transition()
+                    .ease("elastic")
+                    .duration("500")
+                    .attr("font-size", "20px");
+            })
             .on("mouseout", mouseout);
 
         onode.append("circle")
@@ -326,7 +340,11 @@
           .enter().append("g")
             .attr("class", "inner_node")
             .attr("transform", function (d, i) { return "translate(" + d.x + "," + d.y + ")" })
-            .on("mouseover", mouseover)
+            .on("mouseover", 
+            
+            mouseover
+                
+            )
             .on("mouseout", mouseout);
 
         inode.append('rect')
@@ -365,7 +383,7 @@
             //Change width of the bar
             bar_incr_size(d.id, step_incr_decr);
 
-
+            
             // bring to front
             d3.selectAll('.links .link').sort(function (a, b) { return d.related_links.indexOf(a.id); });
 
